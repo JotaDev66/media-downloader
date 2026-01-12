@@ -93,7 +93,15 @@ export async function decryptWhatsAppMedia(
   }
 
   const mediaType = MEDIA_TYPES[typeKey];
-  const url = media?.url ?? media?.URL;
+  
+
+  let url = media?.url ?? media?.URL;
+  
+
+  if (media?.directPath && (!url || url === 'https://web.whatsapp.net' || url.endsWith('web.whatsapp.net'))) {
+    url = `https://mmg.whatsapp.net${media.directPath}`;
+  }
+  
   const mediaKeyBase64 = media.mediaKey;
   const rawMime = media.mimetype || 'application/octet-stream';
   const cleanMime = rawMime.split(';')[0].trim();

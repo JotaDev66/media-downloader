@@ -7,6 +7,7 @@ export interface WhatsAppMediaMessage {
   fileName?: string;
   fileSha256?: string;
   fileEncSha256?: string;
+  directPath?: string;
 }
 
 export interface WhatsAppPayload {
